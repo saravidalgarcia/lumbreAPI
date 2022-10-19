@@ -1,7 +1,9 @@
 package com.daw.proyecto.utils;
 
+import com.daw.proyecto.dto.PersonajeDTO;
 import com.daw.proyecto.dto.RazaDTO;
 import com.daw.proyecto.dto.UsuarioDTO;
+import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Raza;
 import com.daw.proyecto.entity.Usuario;
 
@@ -33,6 +35,24 @@ public class EntityToDTO {
 		dto.setId(e.getId());
 		dto.setModificacion(e.getModificacion() != null ? e.getModificacion().toString(): null);
 		dto.setTipo(e.getTipo());
+		return dto;
+	}
+	
+	/**
+	 * Recibe un personaje (entidad) y devuelve un objeto de la clase PersonajeDTO
+	 * @param e
+	 * @return
+	 */
+	public static PersonajeDTO toPersonajeDTO(Personaje e) {
+		PersonajeDTO dto = new PersonajeDTO();
+		dto.setCreacion(e.getCreacion() != null ? e.getCreacion().toString(): null);
+		dto.setId(e.getId());
+		dto.setImagen(e.getImagen());
+		dto.setInformacion(e.getInformacion());
+		dto.setJugador(e.getJugador());
+		dto.setModificacion(e.getModificacion() != null ? e.getModificacion().toString(): null);
+		dto.setNombre(e.getNombre());
+		dto.setRaza(EntityToDTO.toRazaDTO(e.getRaza()));
 		return dto;
 	}
 	
