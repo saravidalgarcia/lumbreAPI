@@ -20,7 +20,9 @@ public class RazaDAOImp implements RazaDAO{
 	private EntityManager entityManager;
 	
 	/**
-	 * Devuelve una lista con todas las razas ordenadas alfabeticamente, o nulo en caso de error
+	 * Devuelve una lista con todas las razas (predefinidas y del usuario) ordenadas alfabeticamente, 
+	 * o nulo en caso de error
+	 * @param usuario
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
