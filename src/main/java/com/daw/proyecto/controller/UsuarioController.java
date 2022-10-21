@@ -87,7 +87,7 @@ public class UsuarioController {
 	@PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Usuario usuario) {
         Usuario u = usuarioService.login(usuario);
-        if (u == null) { return ResponseEntity.status(404).body(null); }
+        if (u == null) { return ResponseEntity.status(401).body(null); }
         String tokenJwt = jwtUtil.create(String.valueOf(u.getId()), u.getEmail());
         String resultado = tokenJwt;
         return ResponseEntity.status(200).body(resultado);
