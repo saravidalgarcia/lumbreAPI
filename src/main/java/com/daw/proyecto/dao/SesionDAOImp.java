@@ -55,7 +55,7 @@ public class SesionDAOImp implements SesionDAO {
 	            return null;
 	        }
 	        return lista.get(0);
-		}catch(Error e) {
+		}catch(Exception e) {
 			return null;
 		}
 	}
@@ -92,7 +92,7 @@ public class SesionDAOImp implements SesionDAO {
 			        .setParameter("campanha",campanha)
 			        .executeUpdate();
 	        return "OK";
-		}catch (Error e) {
+		}catch (Exception e) {
 			return e.getMessage();
 		}
 	}
@@ -112,7 +112,7 @@ public class SesionDAOImp implements SesionDAO {
 			        .getResultList(),Sesion.class);
 			return lista;
 		}
-		catch(Error e) {
+		catch(Exception e) {
 			return null;
 		}
 	}
@@ -132,7 +132,7 @@ public class SesionDAOImp implements SesionDAO {
 			        .getResultList(),Sesion.class);
 			return lista;
 		}
-		catch(Error e) {
+		catch(Exception e) {
 			return null;
 		}
 	}

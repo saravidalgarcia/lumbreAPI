@@ -34,7 +34,7 @@ public class CampanhaDAOImp implements CampanhaDAO{
 			        .getResultList(),Campanha.class);
 			return lista;
 		}
-		catch(Error e) {
+		catch(Exception e) {
 			return null;
 		}
 	}
@@ -72,7 +72,7 @@ public class CampanhaDAOImp implements CampanhaDAO{
 	            return null;
 	        }
 	        return lista.get(0);
-		}catch (Error e) {
+		}catch (Exception e) {
 			return null;
 		}
 	}
@@ -108,7 +108,7 @@ public class CampanhaDAOImp implements CampanhaDAO{
 			        .setParameter("id", id)
 			        .executeUpdate();
 	        return "OK";
-		}catch (Error e) {
+		}catch (Exception e) {
 			return e.getMessage();
 		}
 	}
@@ -130,7 +130,7 @@ public class CampanhaDAOImp implements CampanhaDAO{
 			.setParameter("id", c.getId())
 			.executeUpdate();
 			return "OK";
-		}catch(Error e) {
+		}catch(Exception e) {
 			return e.getMessage();
 		}	
 	}

@@ -3,6 +3,7 @@ package com.daw.proyecto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,12 +59,12 @@ public class SesionController {
 	 * @return
 	 */
 	@GetMapping("/{username}/sesiones")
-	public List<SesionDTO> getSesiones(@PathVariable String username, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<List<SesionDTO>> getSesiones(@PathVariable String username, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
-		if (usuario == null)
-			return null;
-		return sesionService.getSesiones(usuario);
+		if (usuario == null) { return ResponseEntity.status(404).body(null); }
+		List<SesionDTO> resultado = sesionService.getSesiones(usuario);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -74,13 +75,13 @@ public class SesionController {
 	 * @return
 	 */
 	@GetMapping("/{username}/{id_campanha}/sesiones")
-	public List<SesionDTO> getSesiones(@PathVariable String username, @PathVariable Long id_campanha, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<List<SesionDTO>> getSesiones(@PathVariable String username, @PathVariable Long id_campanha, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha campanha = campanhaService.getCampanha(id_campanha);
-		if (usuario == null || campanha == null)
-			return null;
-		return sesionService.getSesiones(campanha);
+		if (usuario == null || campanha == null) { return ResponseEntity.status(404).body(null); }
+		List<SesionDTO> resultado = sesionService.getSesiones(campanha);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -92,15 +93,15 @@ public class SesionController {
 	 * @return
 	 */
 	@PostMapping("{username}/{id_campanha}/sesiones")
-	public String crearSesion(@PathVariable String username, @PathVariable Long id_campanha, @RequestHeader(value="Authorization") String token,@RequestBody Sesion sesion) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> crearSesion(@PathVariable String username, @PathVariable Long id_campanha, @RequestHeader(value="Authorization") String token,@RequestBody Sesion sesion) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha campanha = campanhaService.getCampanha(id_campanha);
-		if (usuario == null || campanha == null)
-			return null;
+		if (usuario == null || campanha == null) { return ResponseEntity.status(404).body(null); }
 		sesion.setUsuario(usuario);
 		sesion.setCampanha(campanha);
-		return sesionService.crearSesion(sesion);
+		String resultado = sesionService.crearSesion(sesion);
+		return ResponseEntity.status((resultado.equals("OK")) ? 201 : 400).body(resultado);
 	}
 	
 	/**
@@ -112,13 +113,13 @@ public class SesionController {
 	 * @return
 	 */
 	@GetMapping("/{username}/{id_campanha}/sesiones/{id}")
-	public SesionDTO getSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<SesionDTO> getSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha campanha = campanhaService.getCampanha(id_campanha);
-		if (usuario == null || campanha == null)
-			return null;
-		return sesionService.getSesionDTO(id, campanha);
+		if (usuario == null || campanha == null) { return ResponseEntity.status(404).body(null); }
+		SesionDTO resultado = sesionService.getSesionDTO(id, campanha);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -131,13 +132,12 @@ public class SesionController {
 	 * @return
 	 */
 	@PutMapping("{username}/{id_campanha}/sesiones/{id}")
-	public String updateSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Sesion sesion) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> updateSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Sesion sesion) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha campanha = campanhaService.getCampanha(id_campanha);
 		Sesion s = sesionService.getSesion(id, campanha);
-		if (usuario == null || campanha == null || s == null)
-			return null;
+		if (usuario == null || campanha == null || s == null) { return ResponseEntity.status(404).body(null); }
 		s.setCampanha(campanha);
 		s.setEstado(sesion.getEstado());
 		s.setFecha(sesion.getFecha());
@@ -145,7 +145,8 @@ public class SesionController {
 		s.setNombre(sesion.getNombre());
 		s.setPlanificacion(sesion.getPlanificacion());
 		s.setResultados(sesion.getResultados());
-		return sesionService.updateSesion(s);
+		String resultado = sesionService.updateSesion(s);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -157,14 +158,14 @@ public class SesionController {
 	 * @return
 	 */
 	@DeleteMapping("{username}/{id_campanha}/sesiones/{id}")
-	public String deleteSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> deleteSesion(@PathVariable String username, @PathVariable Long id_campanha, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha campanha = campanhaService.getCampanha(id_campanha);
 		Sesion s = sesionService.getSesion(id, campanha);
-		if (usuario == null || campanha == null || s == null)
-			return null;
-		return sesionService.deleteSesion(id, campanha);
+		if (usuario == null || campanha == null || s == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = sesionService.deleteSesion(id, campanha);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.daw.proyecto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,12 +54,12 @@ public class RazaController {
 	 * @return
 	 */
 	@GetMapping("/{username}/razas")
-	public List<RazaDTO> getRazas(@PathVariable String username, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<List<RazaDTO>> getRazas(@PathVariable String username, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario u = usuarioService.getUsuario(username);
-		if (u == null)
-			return null;
-		return razaService.getRazas(u);
+		if (u == null) { return ResponseEntity.status(404).body(null); }
+		List<RazaDTO> resultado = razaService.getRazas(u);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -69,13 +70,13 @@ public class RazaController {
 	 * @return
 	 */
 	@PostMapping("{username}/razas")
-	public String crearRaza(@PathVariable String username, @RequestHeader(value="Authorization") String token,@RequestBody Raza raza) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> crearRaza(@PathVariable String username, @RequestHeader(value="Authorization") String token,@RequestBody Raza raza) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario u = usuarioService.getUsuario(username);
-		if (u == null)
-			return null;
+		if (u == null) { return ResponseEntity.status(404).body(null); }
 		raza.setUsuario(u);
-		return razaService.crearRaza(raza);
+		String resultado = razaService.crearRaza(raza);
+		return ResponseEntity.status((resultado.equals("OK")) ? 201 : 400).body(resultado);
 	}
 	
 	/**
@@ -86,10 +87,11 @@ public class RazaController {
 	 * @return
 	 */
 	@GetMapping("/{username}/razas/{id}")
-	public RazaDTO getRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		return razaService.getRazaDTO(id);
+	public ResponseEntity<RazaDTO> getRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		if (usuarioService.getUsuario(username) == null) { return ResponseEntity.status(404).body(null); }
+		RazaDTO resultado = razaService.getRazaDTO(id);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -101,15 +103,16 @@ public class RazaController {
 	 * @return
 	 */
 	@PutMapping("{username}/razas/{id}")
-	public String updateRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Raza raza) {
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		if (razaService.getRaza(id) == null) {return null;}
+	public ResponseEntity<String> updateRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Raza raza) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		if (usuarioService.getUsuario(username) == null) { return ResponseEntity.status(404).body(null); }
+		if (razaService.getRaza(id) == null) { return ResponseEntity.status(404).body(null); }
 		Raza r = razaService.getRaza(id);
 		r.setDenominacion(raza.getDenominacion());
 		r.setDescripcion(raza.getDescripcion());
 		r.setModificacion(raza.getModificacion());
-		return razaService.updateRaza(r);
+		String resultado = razaService.updateRaza(r);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -120,11 +123,12 @@ public class RazaController {
 	 * @return
 	 */
 	@DeleteMapping("{username}/razas/{id}")
-	public String deleteRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		if (razaService.getRaza(id) == null) {return null;}
-		return razaService.deleteRaza(id);
+	public ResponseEntity<String> deleteRaza(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		if (usuarioService.getUsuario(username) == null) { return ResponseEntity.status(404).body(null); }
+		if (razaService.getRaza(id) == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = razaService.deleteRaza(id);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 
 }

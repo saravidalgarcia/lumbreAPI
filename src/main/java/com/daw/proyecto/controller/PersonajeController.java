@@ -6,6 +6,7 @@ import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,10 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.daw.proyecto.dto.PersonajeDTO;
-import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
-import com.daw.proyecto.service.CampanhaService;
 import com.daw.proyecto.service.PersonajeService;
 import com.daw.proyecto.service.RazaService;
 import com.daw.proyecto.service.UsuarioService;
@@ -43,9 +42,6 @@ public class PersonajeController {
 	
 	@Autowired
 	private RazaService razaService;
-	
-	@Autowired
-	private CampanhaService campanhaService;
 
 	@Autowired
     private JWTUtil jwtUtil;
@@ -83,12 +79,12 @@ public class PersonajeController {
 	 * @return
 	 */
 	@GetMapping("/{username}/personajes")
-	public List<PersonajeDTO> getPersonajes(@PathVariable String username, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<List<PersonajeDTO>> getPersonajes(@PathVariable String username, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario u = usuarioService.getUsuario(username);
-		if (u == null)
-			return null;
-		return personajeService.getPersonajes(u);
+		if (u == null) { return ResponseEntity.status(404).body(null); }
+		List<PersonajeDTO> resultado = personajeService.getPersonajes(u);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -99,10 +95,11 @@ public class PersonajeController {
 	 * @return
 	 */
 	@GetMapping("/{username}/personajes/{id}")
-	public PersonajeDTO getPersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		return personajeService.getPersonajeDTO(id);
+	public ResponseEntity<PersonajeDTO> getPersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		if (usuarioService.getUsuario(username) == null) { return ResponseEntity.status(404).body(null); }
+		PersonajeDTO resultado = personajeService.getPersonajeDTO(id);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	
@@ -118,15 +115,15 @@ public class PersonajeController {
 	 * @return
 	 */
 	@PostMapping("{username}/personajes")
-	public String crearPersonaje(@PathVariable String username, @RequestHeader(value="Authorization") String token,
+	public ResponseEntity<String> crearPersonaje(@PathVariable String username, @RequestHeader(value="Authorization") String token,
 			@RequestParam("file") MultipartFile file,
     		@RequestParam("nombre") String nombre,
     		@RequestParam("raza") Long idraza,
     		@RequestParam("jugador") String jugador, 
     		@RequestParam("informacion") String informacion){
-		if (!validarToken(token)) { return null; }
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 	    if (!esImagen(file.getContentType())) {
-	    	return "Formato de imagen incorrecto";
+	    	return ResponseEntity.status(400).body("Formato de imagen incorrecto");
 	    }
 		Personaje p = new Personaje();
 		try {
@@ -141,7 +138,8 @@ public class PersonajeController {
 		p.setModificacion(LocalDate.now());
 		p.setRaza(razaService.getRaza(idraza));
 		p.setUsuario(usuarioService.getUsuario(username));
-		return personajeService.crearPersonaje(p);
+		String resultado = personajeService.crearPersonaje(p);
+		return ResponseEntity.status((resultado.equals("OK")) ? 201 : 400).body(resultado);
 	}
 	
 	/**
@@ -157,18 +155,18 @@ public class PersonajeController {
 	 * @return
 	 */
 	@PutMapping("{username}/personajes/{id}")
-	public String updatePersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,
+	public ResponseEntity<String> updatePersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,
 			@RequestParam("file") MultipartFile file,
     		@RequestParam("nombre") String nombre,
     		@RequestParam("raza") Long idraza,
     		@RequestParam("jugador") String jugador, 
     		@RequestParam("informacion") String informacion){
-		if (!validarToken(token)) { return null; }
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Personaje p = personajeService.getPersonaje(id);
 	    String contentType = file.getContentType();  
 	    if (!contentType.equals("application/octet-stream")) {
 	    	if (!esImagen(contentType)) {
-		    	return "Formato de imagen incorrecto "+contentType;
+	    		return ResponseEntity.status(400).body("Formato de imagen incorrecto "+contentType);
 		    }
 			try {
 				p.setImagen(Base64.getEncoder().encodeToString(file.getBytes()));
@@ -181,7 +179,8 @@ public class PersonajeController {
 		p.setJugador(jugador);
 		p.setInformacion(informacion);
 		p.setModificacion(LocalDate.now());
-		return personajeService.updatePersonaje(p);
+		String resultado = personajeService.updatePersonaje(p);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -192,11 +191,12 @@ public class PersonajeController {
 	 * @return
 	 */
 	@DeleteMapping("{username}/personajes/{id}")
-	public String deletePersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		if (personajeService.getPersonaje(id) == null) {return null;}
-		return personajeService.deletePersonaje(id);
+	public ResponseEntity<String> deletePersonaje(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		if (usuarioService.getUsuario(username) == null) { return ResponseEntity.status(404).body(null); }
+		if (personajeService.getPersonaje(id) == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = personajeService.deletePersonaje(id);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 
 }

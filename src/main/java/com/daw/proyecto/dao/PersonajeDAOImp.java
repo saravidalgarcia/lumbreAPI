@@ -33,7 +33,7 @@ public class PersonajeDAOImp implements PersonajeDAO{
 			        .getResultList(),Personaje.class);
 			return lista;
 		}
-		catch(Error e) {
+		catch(Exception e) {
 			return null;
 		}
 	}
@@ -52,7 +52,7 @@ public class PersonajeDAOImp implements PersonajeDAO{
 			        .getResultList(),Personaje.class);
 			return lista;
 		}
-		catch(Error e) {
+		catch(Exception e) {
 			return null;
 		}
 	}
@@ -90,7 +90,7 @@ public class PersonajeDAOImp implements PersonajeDAO{
 	            return null;
 	        }
 	        return lista.get(0);
-		}catch (Error e) {
+		}catch (Exception e) {
 			return null;
 		}
 	}
@@ -126,7 +126,7 @@ public class PersonajeDAOImp implements PersonajeDAO{
 			        .setParameter("id", id)
 			        .executeUpdate();
 	        return "OK";
-		}catch (Error e) {
+		}catch (Exception e) {
 			return e.getMessage();
 		}
 	}

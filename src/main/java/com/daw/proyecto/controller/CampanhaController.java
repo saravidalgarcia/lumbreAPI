@@ -3,6 +3,7 @@ package com.daw.proyecto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,12 +59,13 @@ public class CampanhaController {
 	 * @return
 	 */
 	@GetMapping("/{username}/campanhas")
-	public List<CampanhaDTO> getCampanhas(@PathVariable String username, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<List<CampanhaDTO>> getCampanhas(@PathVariable String username, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		if (usuario == null)
-			return null;
-		return campanhaService.getCampanhas(usuario);
+			return ResponseEntity.status(404).body(null);
+		List<CampanhaDTO> resultado = campanhaService.getCampanhas(usuario);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -74,13 +76,14 @@ public class CampanhaController {
 	 * @return
 	 */
 	@PostMapping("{username}/campanhas")
-	public String crearCampanha(@PathVariable String username, @RequestHeader(value="Authorization") String token,@RequestBody Campanha campanha) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> crearCampanha(@PathVariable String username, @RequestHeader(value="Authorization") String token,@RequestBody Campanha campanha) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
 		if (usuario == null)
-			return null;
+			return ResponseEntity.status(404).body(null);
 		campanha.setUsuario(usuario);
-		return campanhaService.crearCampanha(campanha);
+		String resultado = campanhaService.crearCampanha(campanha);
+		return ResponseEntity.status((resultado.equals("OK")) ? 201 : 400).body(resultado);
 	}
 	
 	/**
@@ -91,12 +94,12 @@ public class CampanhaController {
 	 * @return
 	 */
 	@GetMapping("/{username}/campanhas/{id}")
-	public CampanhaDTO getCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
-		Usuario usuario = usuarioService.getUsuario(username);
-		if (usuario == null)
-			return null;
-		return campanhaService.getCampanhaDTO(id);
+	public ResponseEntity<CampanhaDTO> getCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token){
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		Usuario u = usuarioService.getUsuario(username);
+		if (u == null) { return ResponseEntity.status(404).body(null); }
+		CampanhaDTO resultado = campanhaService.getCampanhaDTO(id);
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -108,16 +111,17 @@ public class CampanhaController {
 	 * @return
 	 */
 	@PutMapping("{username}/campanhas/{id}")
-	public String updateCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Campanha campanha) {
-		if (!validarToken(token)) { return null; }
-		if (usuarioService.getUsuario(username) == null) {return null;}
-		if (campanhaService.getCampanha(id) == null) return null;
+	public ResponseEntity<String> updateCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token,@RequestBody Campanha campanha) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		Usuario u = usuarioService.getUsuario(username);
 		Campanha c = campanhaService.getCampanha(id);
+		if (u == null || c == null) { return ResponseEntity.status(404).body(null); }
 		c.setInformacion(campanha.getInformacion());
 		c.setTitulo(campanha.getTitulo());
 		c.setResumen(campanha.getResumen());
 		c.setModificacion(campanha.getModificacion());
-		return campanhaService.updateCampanha(c);
+		String resultado = campanhaService.updateCampanha(c);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -129,18 +133,14 @@ public class CampanhaController {
 	 * @return
 	 */
 	@PutMapping("{username}/campanhas/{id}/addP/{id_p}")
-	public String addPersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
-		Usuario usuario = usuarioService.getUsuario(username);
-		if (usuario == null)
-			return null;
+	public ResponseEntity<String> addPersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		Usuario u = usuarioService.getUsuario(username);
 		Campanha c = campanhaService.getCampanha(id);
-		if (c == null)
-			return null;
 		Personaje p = personajeService.getPersonaje(id_p);
-		if (p == null)
-			return null;
-		return campanhaService.addPersonaje(c,p);
+		if (u == null || c == null || p == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = campanhaService.addPersonaje(c,p);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -152,18 +152,14 @@ public class CampanhaController {
 	 * @return
 	 */
 	@PutMapping("{username}/campanhas/{id}/removeP/{id_p}")
-	public String removePersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
+	public ResponseEntity<String> removePersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
 		Usuario usuario = usuarioService.getUsuario(username);
-		if (usuario == null)
-			return null;
 		Campanha c = campanhaService.getCampanha(id);
-		if (c == null)
-			return null;
 		Personaje p = personajeService.getPersonaje(id_p);
-		if (p == null)
-			return null;
-		return campanhaService.removePersonaje(c,p);
+		if (usuario == null || c == null || p == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = campanhaService.removePersonaje(c,p);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 	/**
@@ -174,15 +170,13 @@ public class CampanhaController {
 	 * @return
 	 */
 	@DeleteMapping("{username}/campanhas/{id}")
-	public String deleteCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
-		if (!validarToken(token)) { return null; }
-		Usuario usuario = usuarioService.getUsuario(username);
-		if (usuario == null)
-			return null;
+	public ResponseEntity<String> deleteCampanha(@PathVariable String username, @PathVariable Long id, @RequestHeader(value="Authorization") String token) {
+		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
+		Usuario u = usuarioService.getUsuario(username);
 		Campanha c = campanhaService.getCampanha(id);
-		if (c == null)
-			return null;
-		return campanhaService.deleteCampanha(id);
+		if (u == null || c == null) { return ResponseEntity.status(404).body(null); }
+		String resultado = campanhaService.deleteCampanha(id);
+		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 
 }

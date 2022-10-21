@@ -3,6 +3,7 @@ package com.daw.proyecto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,18 +43,18 @@ public class UsuarioController {
         return usuarioId != null;
     }
 	
-	
 	/**
 	 * Petición POST para creación de usuario
 	 * @param usuario
 	 * @return
 	 */
 	@PostMapping("/usuarios")
-	public String crearUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<String> crearUsuario(@RequestBody Usuario usuario) {
 		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         String hash = argon2.hash(1, 1024, 1, usuario.getPasswd());
         usuario.setPasswd(hash);
-        return usuarioService.crearUsuario(usuario);
+        String resultado = usuarioService.crearUsuario(usuario);
+        return ResponseEntity.status((resultado.equals("OK")) ? 201 : 400).body(resultado);
 	}
 	
 	/**
@@ -64,18 +65,17 @@ public class UsuarioController {
 	 * @return
 	 */
 	@PostMapping("{username}/password")
-	public String updatePassword(@PathVariable String username, 
+	public ResponseEntity<String> updatePassword(@PathVariable String username, 
 			@RequestHeader(value="Authorization") String token,
 			@RequestBody Usuario usuario) {
 		if (!validarToken(token)) { return null; }
 		Usuario u = usuarioService.login(usuario);
-        if (u != null) {
-        	Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-            String hash = argon2.hash(1, 1024, 1, usuario.getEmail());
-            u.setPasswd(hash);
-            return usuarioService.updateUsuario(u);
-        }
-        return "ERROR";
+        if (u == null) { return ResponseEntity.status(404).body(null); }
+    	Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hash = argon2.hash(1, 1024, 1, usuario.getEmail());
+        u.setPasswd(hash);
+        String resultado = usuarioService.updateUsuario(u);
+        return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
 
@@ -85,13 +85,12 @@ public class UsuarioController {
 	 * @return
 	 */
 	@PostMapping("/login")
-    public String login(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
         Usuario u = usuarioService.login(usuario);
-        if (u != null) {
-            String tokenJwt = jwtUtil.create(String.valueOf(u.getId()), u.getEmail());
-            return tokenJwt;
-        }
-        return "ERROR";
+        if (u == null) { return ResponseEntity.status(404).body(null); }
+        String tokenJwt = jwtUtil.create(String.valueOf(u.getId()), u.getEmail());
+        String resultado = tokenJwt;
+        return ResponseEntity.status(200).body(resultado);
     }
 	
 	/**
@@ -99,8 +98,9 @@ public class UsuarioController {
 	 * @return
 	 */
 	@GetMapping("/usuarios")
-	public List<UsuarioDTO> getUsuarios(){
-		return usuarioService.getUsuarios();
+	public ResponseEntity<List<UsuarioDTO>> getUsuarios(){
+		List<UsuarioDTO> resultado = usuarioService.getUsuarios();
+		return ResponseEntity.status((resultado != null) ? 200 : 400).body(resultado);
 	}
 	
 }
