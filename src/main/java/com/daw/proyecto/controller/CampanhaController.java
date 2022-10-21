@@ -144,14 +144,14 @@ public class CampanhaController {
 	}
 	
 	/**
-	 * Petición DELETE para eliminar un personaje de la campaña
+	 * Petición PUT para eliminar un personaje de la campaña
 	 * @param username
 	 * @param id
 	 * @param id_p
 	 * @param token
 	 * @return
 	 */
-	@DeleteMapping("{username}/campanhas/{id}/removeP/{id_p}")
+	@PutMapping("{username}/campanhas/{id}/removeP/{id_p}")
 	public String removePersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
 		if (!validarToken(token)) { return null; }
 		Usuario usuario = usuarioService.getUsuario(username);

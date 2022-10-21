@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --font-color: #ffa202;
+    --font-color-soft: rgb(255, 162, 2, 0.3);
+    --font-color-dark: #ad5c00;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: white;
+}
+
+/* Cabecera */
+
+header.cabecera {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    height: 80px;
+    padding: 0 50px;
+}
+
+header.cabecera img {
+    max-width: 50px;
+}
+
+header.cabecera h1 {
+    color: white;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: black;
+    color: var(--font-color);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenido general */
+
+main {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    padding-right: 30px;
+}
+
+/* Cabecera de la información */
+
+.cabecera-info {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.cabecera-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.botones {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.botones button {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    border: 1px solid black;
+    padding: 10px 15px;
+    margin: 0 10px;
+}
+
+.botones button.actual {
+    background-color: black;
+    color: var(--font-color);
+}
+
+.botones button:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Cuerpo de la información */
+
+.cuerpo-info {
+    background-color: var(--font-color-soft);
+    margin: 20px;
+    padding: 30px;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    max-width: 1000px;
+}
+
+.bloque {
+    width: 100%;
+}
+
+article {
+    background-color: var(--font-color);
+    padding: 10px;
+    margin: 15px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+article header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+article header>* {
+    margin-right: 10px;
+}
+
+article header h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    font-size: 0.9em;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+button:hover {
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+article section {
+    margin-left: 10px;
+}
+
+article section h5 {
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+article section span {
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.get {
+    background-color: blue;
+}
+
+.post {
+    background-color: green;
+}
+
+.put {
+    background-color: darkkhaki;
+}
+
+.delete {
+    background-color: red;
+}
+
+article section div {
+    font-size: 0.9em;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.codigo {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+.bloques {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.contenedor h3 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.oculto {
+    display: none;
+    visibility: hidden;
+}

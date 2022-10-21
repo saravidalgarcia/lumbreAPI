@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sara Vidal García">
+    <meta name="description" content="Página de información de LumbreAPI">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/img/favicon.png" rel="icon" type="image/png">
+    <title>LumbreAPI</title>
+</head>
+
+<body>
+    <header class="cabecera">
+        <img id="logo" src="assets/img/logo.png" title="LUMBRE" alt="Logo de LUMBRE">
+        <h1>LumbreAPI</h1>
+    </header>
+    <main>
+        <section class="info">
+            <section class="cabecera-info">
+                <h2>Peticiones disponibles en LumbreAPI</h2>
+                <div class="botones">
+                    <button class="boton b-usuarios actual" onclick="mostrar('usuarios');">Usuarios</button>
+                    <button class="boton b-campanhas" onclick="mostrar('campanhas');">Campañas</button>
+                    <button class="boton b-sesiones" onclick="mostrar('sesiones');">Sesiones</button>
+                    <button class="boton b-personajes" onclick="mostrar('personajes');">Personajes</button>
+                    <button class="boton b-razas" onclick="mostrar('razas');">Razas</button>
+                </div>
+            </section>
+
+            <section class="cuerpo-info">
+                <section class="bloques">
+                    <div class="contenedor" id="usuarios">
+                        <h3>Usuarios</h3>
+                        <section class="bloque">
+                            <article>
+                                <header>
+                                    <h4>Crear un usuario</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/usuarios')">
+                                        http://localhost:8080/lumbre/api/usuarios
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h1"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p1"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Hacer el login de un usuario</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/login')">
+                                        http://localhost:8080/lumbre/api/login
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h1"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener la lista de usuarios</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/usuarios')">
+                                        http://localhost:8080/lumbre/api/usuarios
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h1"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Actualizar la contraseña de un usuario</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/password')">
+                                        http://localhost:8080/lumbre/api/{username}/password
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p3"></div>
+                                </section>
+                            </article>
+                        </section>
+                    </div>
+                    <div class="contenedor oculto" id="campanhas">
+                        <h3>Campañas</h3>
+                        <section class="bloque">
+                            <article>
+                                <header>
+                                    <h4>Obtener el listado de campañas</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Crear una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p4"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Actualizar una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p5"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Eliminar una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo delete">DELETE</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Añadir un personaje a una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas/{id_campaña}/addP/{id_personaje}')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas/{id_campaña}/addP/{id_personaje}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Quitar un personaje de una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/campanhas/{id_campaña}/removeP/{id_personaje}')">
+                                        http://localhost:8080/lumbre/api/{username}/campanhas/{id_campaña}/removeP/{id_personaje}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                        </section>
+                    </div>
+                    <div class="contenedor oculto" id="sesiones">
+                        <h3>Sesiones</h3>
+                        <section class="bloque">
+                            <article>
+                                <header>
+                                    <h4>Obtener el listado de sesiones</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/sesiones')">
+                                        http://localhost:8080/lumbre/api/{username}/sesiones
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener el listado de sesiones de una campaña</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones')">
+                                        http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Crear una sesión</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones')">
+                                        http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p6"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener una sesión</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Actualizar una sesión</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/{id_campaña}/sesiones/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p7"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Eliminar una sesión</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/sesiones/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/sesiones/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo delete">DELETE</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                        </section>
+                    </div>
+                    <div class="contenedor oculto" id="personajes">
+                        <h3>Personajes</h3>
+                        <section class="bloque">
+                            <article>
+                                <header>
+                                    <h4>Obtener el listado de personajes</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/personajes')">
+                                        http://localhost:8080/lumbre/api/{username}/personajes
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Crear un personaje</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/personajes')">
+                                        http://localhost:8080/lumbre/api/{username}/personajes
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h3"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p8"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener un personaje</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/personajes/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/personajes/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Actualizar un personaje</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/personajes/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/personajes/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h3"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p9"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Eliminar un personaje</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/personajes/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/personajes/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo delete">DELETE</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                        </section>
+                    </div>
+                    <div class="contenedor oculto" id="razas">
+                        <h3>Razas</h3>
+                        <section class="bloque">
+                            <article>
+                                <header>
+                                    <h4>Obtener el listado de razas</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/razas')">
+                                        http://localhost:8080/lumbre/api/{username}/razas
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Crear una raza</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/razas')">
+                                        http://localhost:8080/lumbre/api/{username}/razas
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo post">POST</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h3"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p10"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Obtener una raza</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/razas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/razas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo get">GET</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Actualizar una raza</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/razas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/razas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo put">PUT</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h3"></div>
+                                    <h5>Body:</h5>
+                                    <div class="codigo" id="p11"></div>
+                                </section>
+                            </article>
+                            <article>
+                                <header>
+                                    <h4>Eliminar una raza</h4>
+                                    <button title="Copiar al portapapeles"
+                                        onclick="copiar('http://localhost:8080/lumbre/api/{username}/razas/{id}')">
+                                        http://localhost:8080/lumbre/api/{username}/razas/{id}
+                                    </button>
+                                </header>
+                                <section>
+                                    <h5>Método: <span class="metodo delete">DELETE</span></h5>
+                                    <h5>Headers: </h5>
+                                    <div class="codigo h2"></div>
+                                </section>
+                            </article>
+                        </section>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>Sara Vidal García | 2022</p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

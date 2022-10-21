@@ -92,25 +92,6 @@ public class PersonajeController {
 	}
 	
 	/**
-	 * Petición GET para obtener el listado de personajes (DTO) de un usuario para una campaña concreta
-	 * @param username
-	 * @param id_campanha
-	 * @param token
-	 * @return
-	 */
-	@GetMapping("/{username}/{id_campanha}/personajes")
-	public List<PersonajeDTO> getPersonajes(@PathVariable String username, @PathVariable Long id_campanha, @RequestHeader(value="Authorization") String token){
-		if (!validarToken(token)) { return null; }
-		Usuario u = usuarioService.getUsuario(username);
-		if (u == null)
-			return null;
-		Campanha c = campanhaService.getCampanha(id_campanha);
-		if (c == null)
-			return null;
-		return personajeService.getPersonajes(u, c);
-	}
-	
-	/**
 	 * Petición GET para obtener un personaje (DTO)
 	 * @param username
 	 * @param id
