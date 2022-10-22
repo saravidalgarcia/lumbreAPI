@@ -18,8 +18,4 @@ public interface CampanhaDAO {
 	
 	public String deleteCampanha(Long id);
 	
-	public String addPersonaje(Campanha c, Personaje p);
-	
-	public String removePersonaje(Campanha c, Personaje p);
-	
 }

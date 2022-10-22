@@ -20,9 +20,5 @@ public interface CampanhaService {
 	public String updateCampanha(Campanha campanha);
 	
 	public String deleteCampanha(Long id);
-	
-	public String addPersonaje(Campanha c, Personaje p);
-	
-	public String removePersonaje(Campanha c, Personaje p);
-	
+
 }

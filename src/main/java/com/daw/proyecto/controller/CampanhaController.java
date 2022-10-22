@@ -135,11 +135,12 @@ public class CampanhaController {
 	@PutMapping("{username}/campanhas/{id}/addP/{id_p}")
 	public ResponseEntity<String> addPersonaje(@PathVariable String username, @PathVariable Long id, @PathVariable Long id_p, @RequestHeader(value="Authorization") String token) {
 		if (!validarToken(token)) { return ResponseEntity.status(401).body(null); }
-		Usuario u = usuarioService.getUsuario(username);
+		Usuario usuario = usuarioService.getUsuario(username);
 		Campanha c = campanhaService.getCampanha(id);
 		Personaje p = personajeService.getPersonaje(id_p);
-		if (u == null || c == null || p == null) { return ResponseEntity.status(404).body(null); }
-		String resultado = campanhaService.addPersonaje(c,p);
+		if (usuario == null || c == null || p == null) { return ResponseEntity.status(404).body(null); }
+		c.addPersonaje(p);
+		String resultado = campanhaService.updateCampanha(c);
 		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	
@@ -158,7 +159,8 @@ public class CampanhaController {
 		Campanha c = campanhaService.getCampanha(id);
 		Personaje p = personajeService.getPersonaje(id_p);
 		if (usuario == null || c == null || p == null) { return ResponseEntity.status(404).body(null); }
-		String resultado = campanhaService.removePersonaje(c,p);
+		c.removePersonaje(p);
+		String resultado = campanhaService.updateCampanha(c);
 		return ResponseEntity.status((resultado.equals("OK")) ? 200 : 400).body(resultado);
 	}
 	

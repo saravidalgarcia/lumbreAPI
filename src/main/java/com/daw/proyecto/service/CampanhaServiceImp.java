@@ -90,26 +90,4 @@ public class CampanhaServiceImp implements CampanhaService{
 		return campanhaDAO.deleteCampanha(id);
 	}
 
-	/**
-	 * Recibe una campaña y un personaje y llama al DAO para añadir
-	 * el personaje a la campaña
-	 * @param c
-	 * @param p
-	 */
-	@Override
-	public String addPersonaje(Campanha c, Personaje p) {
-		return campanhaDAO.addPersonaje(c, p);
-	}
-
-	/**
-	 * Recibe una campaña y un personaje y llama al DAO para quitar
-	 * al personaje de la campaña
-	 * @param c
-	 * @param p
-	 */
-	@Override
-	public String removePersonaje(Campanha c, Personaje p) {
-		return campanhaDAO.removePersonaje(c, p);
-	}
-
 }

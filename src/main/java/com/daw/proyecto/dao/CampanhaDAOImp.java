@@ -113,45 +113,4 @@ public class CampanhaDAOImp implements CampanhaDAO{
 		}
 	}
 
-	/**
-	 * Recibe una campaña y un personaje, y asocia el personaje a la campaña, devolviendo "OK"
-	 * en caso de éxito o un mensaje de error en caso contrario
-	 * @param c
-	 * @param p
-	 */
-	@Transactional
-	@Override
-	public String addPersonaje(Campanha c, Personaje p) {
-		c.addPersonaje(p);
-		try {
-			String query = "UPDATE Campanha c SET personajes = :personajes WHERE id = :id";
-			entityManager.createQuery(query)
-			.setParameter("personajes", c.getPersonajes())
-			.setParameter("id", c.getId())
-			.executeUpdate();
-			return "OK";
-		}catch(Exception e) {
-			return e.getMessage();
-		}	
-	}
-
-	/**
-	 * Recibe una campaña y un personaje, y quita el personaje de la campaña, devolviendo "OK"
-	 * en caso de éxito o un mensaje de error en caso contrario
-	 * @param c
-	 * @param p
-	 */
-	@Transactional
-	@Override
-	public String removePersonaje(Campanha c, Personaje p) {
-		c.removePersonaje(p);
-		Session sesion = entityManager.unwrap(Session.class);
-		try {
-			sesion.save(c);
-			return "OK";
-		}catch(Exception e) {
-			return (e.getMessage());
-		}
-	}
-
 }
