@@ -4,13 +4,25 @@ USE lumbre;
 
 CREATE TABLE administrador(
 	id BIGINT NOT NULL auto_increment,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(255) NOT NULL,
+    dni VARCHAR(9) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     username VARCHAR(255) NOT NULL UNIQUE,
     passwd VARCHAR(255) NOT NULL,
     --
     CONSTRAINT pk_admin PRIMARY KEY (id)
 );
 
-INSERT INTO administrador(username,passwd) VALUES("admin","admin");
+INSERT INTO administrador(nombre,apellidos,dni,email,username,passwd) VALUES(
+"Administración",
+" ",
+"-",
+"admin@lumbre.es",
+"admin",
+-- La contraseña es 'admin'
+"$argon2id$v=19$m=1024,t=1,p=1$Z3V0Zi9HSmk0NWx5eGJ4cw$osafLVXNnd/w6vgKprzeA7tjXxbB8DRfl2u8q16nG3Q"
+);
 
 CREATE TABLE usuario(
 	id BIGINT NOT NULL auto_increment,
