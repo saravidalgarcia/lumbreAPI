@@ -16,7 +16,7 @@ public class MyErrorController implements ErrorController{
 	 * @return
 	 */
 	@RequestMapping("/error")
-	public ResponseEntity<?> getError(){
+	public ResponseEntity<String> getError(){
 		int status = 404;
 		String mensaje = "Error: La petición es incorrecta. Consulta el listado completo de peticiones de LumbreAPI en <a href='http://localhost:8080/lumbre/'>http://localhost:8080/lumbre/</a>";
 	    return ResponseEntity.status(status).body(mensaje);
