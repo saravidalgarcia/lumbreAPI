@@ -1,3 +1,13 @@
+@charset "UTF-8";
+/*
+ *  Lumbre - Hoja de estilos
+ *
+ *  Sara Vidal García
+ *
+ */
+
+/* --- General --- */
+
 * {
     margin: 0;
     padding: 0;
@@ -23,28 +33,52 @@ body {
     background-color: white;
 }
 
+main {
+    flex-grow: 1;
+    height: 100%;
+}
+
 /* Cabecera */
+
+/* --- Cabecera --- */
 
 header.cabecera {
     width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
     align-items: center;
     background-color: black;
     height: 80px;
-    padding: 0 50px;
-}
-
-header.cabecera img {
-    max-width: 50px;
 }
 
 header.cabecera h1 {
     color: white;
 }
 
-/* Footer */
+/* Logo */
+
+.lumbre {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin: 10px auto;
+    background-image: url("../img/logo1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.lumbre:hover {
+    -webkit-animation: arder .6s linear infinite;
+    -moz-animation: arder .6s linear infinite;
+    -ms-animation: arder .6s linear infinite;
+    -o-animation: arder .6s linear infinite;
+    animation: arder .6s linear infinite;
+    background-image: url("../img/logo1.png");
+}
+
+/* --- Footer --- */
+
 footer {
     text-align: center;
     background-color: black;
@@ -55,12 +89,7 @@ footer {
     justify-content: center;
 }
 
-/* Contenido general */
-
-main {
-    flex-grow: 1;
-    height: 100%;
-}
+/* --- Contenido general --- */
 
 .info {
     display: flex;
@@ -72,6 +101,7 @@ main {
     padding: 20px;
     padding-right: 30px;
 }
+
 
 /* Cabecera de la información */
 
@@ -116,6 +146,7 @@ main {
     background-color: white;
     color: black;
 }
+
 
 /* Cuerpo de la información */
 
@@ -231,4 +262,196 @@ article section div {
 .oculto {
     display: none;
     visibility: hidden;
+}
+
+/* --- Keyframes --- */
+
+@-webkit-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-moz-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-ms-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-o-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
 }
