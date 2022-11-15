@@ -4,7 +4,7 @@
 ### Lumbre: Lado servidor de la aplicación para usuarios
 Este proyecto es un servicio web RESTful en Java con el framework Spring. Constituye el lado servidor de la aplicación para usuarios de LUMBRE.
 
-## Prerrequisitos
+## Tecnologías
 * Java 11
 * Apache Maven 3.6.3
 * Tomcat9 y tomcat9-admin
