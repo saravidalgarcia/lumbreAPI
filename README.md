@@ -20,4 +20,4 @@ Una vez ejecutado el proyecto, se genera automáticamente un archivo "lumbre.war
 Para desplegarlo haciendo uso de Web Manager, hay que acceder a http://localhost:8080/manager/html y cargar el archivo "lumbre.war" en el apartado "Archivo WAR a desplegar".
 
 ## Acceso
-Una vez desplegado, el proyecto es accesible desde localhost:8080/lumbre
+Una vez desplegado, el proyecto es accesible desde http://localhost:8080/lumbre , donde es posible consultar todos los endpoints de LumbreAPI.
