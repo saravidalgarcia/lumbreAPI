@@ -5,6 +5,11 @@ import java.util.List;
 import com.daw.proyecto.dto.UsuarioDTO;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del servicio de usuarios
+ *
+ * @author Sara Vidal García
+ */
 public interface UsuarioService {
 
 	public List<UsuarioDTO> getUsuarios();

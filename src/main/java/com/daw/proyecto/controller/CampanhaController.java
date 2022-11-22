@@ -25,6 +25,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Controlador REST de peticiones relativas a campañas
+ *
+ * @author Sara Vidal García
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST, RequestMethod.DELETE})

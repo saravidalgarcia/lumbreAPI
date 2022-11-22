@@ -14,6 +14,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Implementación del DAO de personaje
+ *
+ * @author Sara Vidal García
+ */
 @Repository
 public class PersonajeDAOImp implements PersonajeDAO{
 

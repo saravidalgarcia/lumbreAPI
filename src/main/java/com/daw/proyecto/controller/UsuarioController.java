@@ -22,6 +22,11 @@ import com.daw.proyecto.entity.Usuario;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
+/**
+ * Controlador REST de peticiones relativas a usuarios
+ *
+ * @author Sara Vidal García
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST, RequestMethod.DELETE})

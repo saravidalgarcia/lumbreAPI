@@ -16,7 +16,11 @@ import com.daw.proyecto.entity.Usuario;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
-
+/**
+ * Implementación del DAO de usuario
+ *
+ * @author Sara Vidal García
+ */
 @Repository
 public class UsuarioDAOImp implements UsuarioDAO{
 

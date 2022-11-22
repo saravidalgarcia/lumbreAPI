@@ -14,6 +14,11 @@ import com.daw.proyecto.entity.Raza;
 import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Clase que transforma las entidades en DTOs
+ *
+ * @author Sara Vidal García
+ */
 public class EntityToDTO {
 
 	/**

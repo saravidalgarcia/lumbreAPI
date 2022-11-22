@@ -7,6 +7,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del servicio de campañas
+ *
+ * @author Sara Vidal García
+ */
 public interface CampanhaService {
 
 	public List<CampanhaDTO> getCampanhas(Usuario usuario);

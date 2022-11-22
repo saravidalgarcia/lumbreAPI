@@ -5,6 +5,11 @@ import java.util.List;
 import com.daw.proyecto.entity.Raza;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del DAO de raza
+ *
+ * @author Sara Vidal García
+ */
 public interface RazaDAO {
 	
 	public List<Raza> getRazas(Usuario usuario);

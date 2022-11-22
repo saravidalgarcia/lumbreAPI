@@ -13,6 +13,11 @@ import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.utils.EntityToDTO;
 
+/**
+ * Implementación del servicio de sesiones
+ *
+ * @author Sara Vidal García
+ */
 @Service
 public class SesionServiceImp implements SesionService{
 

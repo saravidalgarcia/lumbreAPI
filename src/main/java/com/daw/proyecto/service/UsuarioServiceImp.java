@@ -11,6 +11,11 @@ import com.daw.proyecto.dto.UsuarioDTO;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.utils.EntityToDTO;
 
+/**
+ * Implementación del servicio de usuarios
+ *
+ * @author Sara Vidal García
+ */
 @Service
 public class UsuarioServiceImp implements UsuarioService {
 

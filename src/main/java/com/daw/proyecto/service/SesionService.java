@@ -7,6 +7,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del servicio de sesiones
+ *
+ * @author Sara Vidal García
+ */
 public interface SesionService {
 
 	public String crearSesion(Sesion sesion);

@@ -25,6 +25,11 @@ import com.daw.proyecto.service.SesionService;
 import com.daw.proyecto.service.UsuarioService;
 import com.daw.proyecto.utils.JWTUtil;
 
+/**
+ * Controlador REST de peticiones relativas a sesiones
+ *
+ * @author Sara Vidal García
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST, RequestMethod.DELETE})

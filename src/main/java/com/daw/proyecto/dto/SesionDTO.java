@@ -2,6 +2,11 @@ package com.daw.proyecto.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO de sesión
+ *
+ * @author Sara Vidal García
+ */
 @SuppressWarnings("serial")
 public class SesionDTO implements Serializable{
 

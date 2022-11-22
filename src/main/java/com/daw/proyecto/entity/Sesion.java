@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+/**
+ * Clase que representa una sesión
+ *
+ * @author Sara Vidal García
+ */
 @Entity
 @Table(name="sesion")
 public class Sesion {

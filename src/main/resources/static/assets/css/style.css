@@ -16,9 +16,9 @@
 }
 
 :root {
-    --font-color: #ffa202;
-    --font-color-soft: rgb(255, 162, 2, 0.3);
-    --font-color-dark: #ad5c00;
+    --font-color: #ff9933;
+    --font-color-soft: rgb(255, 153, 51, 0.3);
+    --font-color-dark: #cc6600;
 }
 
 html,
@@ -46,13 +46,13 @@ header.cabecera {
     width: 100%;
     background-color: black;
     height: 80px;
-    display:flex;
+    display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-between;
 }
 
-header.cabecera > *{
+header.cabecera>* {
     margin: 0 5%;
 }
 
@@ -107,7 +107,6 @@ footer {
     padding-right: 30px;
 }
 
-
 /* Cabecera de la información */
 
 .cabecera-info {
@@ -152,7 +151,6 @@ footer {
     color: black;
 }
 
-
 /* Cuerpo de la información */
 
 .cuerpo-info {
@@ -186,7 +184,7 @@ article header {
     justify-content: flex-start;
 }
 
-article header >* {
+article header>* {
     margin-right: 10px;
 }
 

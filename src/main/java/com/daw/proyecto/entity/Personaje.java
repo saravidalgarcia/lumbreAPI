@@ -20,6 +20,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Clase que representa un personaje
+ *
+ * @author Sara Vidal García
+ */
 @Entity
 @Table(name = "personaje")
 public class Personaje {

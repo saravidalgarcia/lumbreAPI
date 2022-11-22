@@ -14,6 +14,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Implementación del DAO de sesión
+ *
+ * @author Sara Vidal García
+ */
 @Repository
 public class SesionDAOImp implements SesionDAO {
 

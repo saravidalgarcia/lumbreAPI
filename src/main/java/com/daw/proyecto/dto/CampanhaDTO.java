@@ -3,6 +3,11 @@ package com.daw.proyecto.dto;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * DTO de campaña
+ *
+ * @author Sara Vidal García
+ */
 @SuppressWarnings("serial")
 public class CampanhaDTO implements Serializable{
 

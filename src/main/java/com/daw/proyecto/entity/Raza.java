@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Clase que representa una raza
+ *
+ * @author Sara Vidal García
+ */
 @Entity
 @Table(name = "raza")
 public class Raza {

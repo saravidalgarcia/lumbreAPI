@@ -17,6 +17,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Clase que representa una campaña
+ *
+ * @author Sara Vidal García
+ */
 @Entity
 @Table(name = "campanha")
 public class Campanha {

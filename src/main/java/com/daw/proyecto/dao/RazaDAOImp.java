@@ -13,6 +13,11 @@ import org.springframework.stereotype.Repository;
 import com.daw.proyecto.entity.Raza;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Implementación del DAO de raza
+ *
+ * @author Sara Vidal García
+ */
 @Repository
 public class RazaDAOImp implements RazaDAO{
 

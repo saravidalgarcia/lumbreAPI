@@ -6,6 +6,11 @@ import com.daw.proyecto.dto.RazaDTO;
 import com.daw.proyecto.entity.Raza;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del servicio de razas
+ *
+ * @author Sara Vidal García
+ */
 public interface RazaService {
 
 	public List<RazaDTO> getRazas(Usuario usuario);

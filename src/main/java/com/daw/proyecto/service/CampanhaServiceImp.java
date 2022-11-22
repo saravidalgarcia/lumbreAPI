@@ -15,6 +15,11 @@ import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.utils.EntityToDTO;
 
+/**
+ * Implementación del servicio de campañas
+ *
+ * @author Sara Vidal García
+ */
 @Service
 public class CampanhaServiceImp implements CampanhaService{
 	

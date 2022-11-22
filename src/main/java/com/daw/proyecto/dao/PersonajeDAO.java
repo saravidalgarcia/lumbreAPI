@@ -6,6 +6,11 @@ import com.daw.proyecto.entity.Campanha;
 import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
+/**
+ * Interfaz del DAO de personaje
+ *
+ * @author Sara Vidal García
+ */
 public interface PersonajeDAO {
 
 	public List<Personaje> getPersonajes(Usuario usuario);

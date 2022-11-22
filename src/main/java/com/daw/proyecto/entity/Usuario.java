@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Clase que representa un usuario
+ *
+ * @author Sara Vidal García
+ */
 @Entity
 @Table(name = "usuario")
 public class Usuario {

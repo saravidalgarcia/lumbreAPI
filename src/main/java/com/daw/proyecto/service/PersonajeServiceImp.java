@@ -13,6 +13,11 @@ import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.utils.EntityToDTO;
 
+/**
+ * Implementación del servicio de personajes
+ *
+ * @author Sara Vidal García
+ */
 @Service
 public class PersonajeServiceImp implements PersonajeService{
 

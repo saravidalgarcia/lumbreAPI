@@ -6,6 +6,11 @@ import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.entity.Campanha;
 
+/**
+ * Interfaz del DAO de sesión
+ *
+ * @author Sara Vidal García
+ */
 public interface SesionDAO {
 
 	public String crearSesion(Sesion sesion);
