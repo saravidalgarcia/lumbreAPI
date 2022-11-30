@@ -79,7 +79,7 @@ CREATE TABLE sesion(
     --
     CONSTRAINT pk_sesion PRIMARY KEY (id, campanha_id),
     CONSTRAINT fk_sesion_usuario FOREIGN KEY (usuario) REFERENCES usuario(id),
-    CONSTRAINT fk_sesion_campanha FOREIGN KEY (campanha_id) REFERENCES campanha(id)
+    CONSTRAINT fk_sesion_campanha FOREIGN KEY (campanha_id) REFERENCES campanha(id) ON DELETE CASCADE
 );
 
 CREATE TABLE personaje(
