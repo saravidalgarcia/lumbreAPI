@@ -15,7 +15,7 @@
 	<name>proyecto</name>
 	<description>Proyecto final de ciclo DAW</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -64,6 +64,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>lumbre</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,461 @@
+@charset "UTF-8";
+/*
+ *  LumbreAPI - Hoja de estilos
+ *
+ *  Sara Vidal García
+ *
+ */
+
+/* --- General --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --font-color: #ff9933;
+    --font-color-soft: rgb(255, 153, 51, 0.3);
+    --font-color-dark: #cc6600;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: white;
+}
+
+main {
+    flex-grow: 1;
+    height: 100%;
+}
+
+/* Cabecera */
+
+/* --- Cabecera --- */
+
+header.cabecera {
+    width: 100%;
+    background-color: black;
+    height: 80px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header.cabecera>* {
+    margin: 0 5%;
+}
+
+header.cabecera h1 {
+    color: white;
+}
+
+/* Logo */
+
+.lumbre {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin: 10px 0;
+    background-image: url("../img/logo1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.lumbre:hover {
+    -webkit-animation: arder .6s linear infinite;
+    -moz-animation: arder .6s linear infinite;
+    -ms-animation: arder .6s linear infinite;
+    -o-animation: arder .6s linear infinite;
+    animation: arder .6s linear infinite;
+    background-image: url("../img/logo1.png");
+}
+
+/* --- Footer --- */
+
+footer {
+    text-align: center;
+    background-color: black;
+    color: var(--font-color);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Contenido general --- */
+
+.info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    padding-right: 30px;
+}
+
+/* Cabecera de la información */
+
+.cabecera-info {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.cabecera-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.botones {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.botones button {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    border: 1px solid black;
+    padding: 10px 15px;
+    margin: 5px 10px;
+}
+
+.botones button.actual {
+    background-color: black;
+    color: var(--font-color);
+}
+
+.botones button:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Cuerpo de la información */
+
+.cuerpo-info {
+    background-color: var(--font-color-soft);
+    margin: 20px;
+    padding: 30px;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    max-width: 1000px;
+}
+
+.bloque {
+    width: 100%;
+}
+
+article {
+    background-color: var(--font-color);
+    padding: 10px;
+    margin: 15px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+article header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+article header>* {
+    margin-right: 10px;
+}
+
+article header h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    font-size: 0.9em;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 5px;
+    border: 1px solid black;
+}
+
+button:hover {
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+article section {
+    margin-left: 10px;
+}
+
+article section h5 {
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+article section span {
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.get {
+    background-color: blue;
+}
+
+.post {
+    background-color: green;
+}
+
+.put {
+    background-color: darkkhaki;
+}
+
+.delete {
+    background-color: red;
+}
+
+article section div {
+    font-size: 0.9em;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.codigo {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+.bloques {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.contenedor h3 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.oculto {
+    display: none;
+    visibility: hidden;
+}
+
+/* --- Keyframes --- */
+
+@-webkit-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-moz-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-ms-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@-o-keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
+
+@keyframes arder {
+    0% {
+        background-image: url("../img/logo1.png");
+    }
+
+    24% {
+        background-image: url("../img/logo1.png");
+    }
+
+    25% {
+        background-image: url("../img/logo2.png");
+    }
+
+    49% {
+        background-image: url("../img/logo2.png");
+    }
+
+    50% {
+        background-image: url("../img/logo3.png");
+    }
+
+    74% {
+        background-image: url("../img/logo3.png");
+    }
+
+    75% {
+        background-image: url("../img/logo4.png");
+    }
+
+    99% {
+        background-image: url("../img/logo4.png");
+    }
+
+    100% {
+        background-image: url("../img/logo1.png");
+    }
+}
