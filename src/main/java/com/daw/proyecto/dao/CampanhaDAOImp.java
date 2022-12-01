@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.daw.proyecto.entity.Campanha;
-import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
 /**

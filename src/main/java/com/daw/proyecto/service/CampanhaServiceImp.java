@@ -10,7 +10,6 @@ import com.daw.proyecto.dao.CampanhaDAO;
 import com.daw.proyecto.dao.SesionDAO;
 import com.daw.proyecto.dto.CampanhaDTO;
 import com.daw.proyecto.entity.Campanha;
-import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Sesion;
 import com.daw.proyecto.entity.Usuario;
 import com.daw.proyecto.utils.EntityToDTO;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.daw.proyecto.dto.CampanhaDTO;
 import com.daw.proyecto.entity.Campanha;
-import com.daw.proyecto.entity.Personaje;
 import com.daw.proyecto.entity.Usuario;
 
 /**
